@@ -13,9 +13,12 @@ Recieves and plots Z accel live
 - save data to SD card
 
 ### Python
-- Improve integral tracking(RK4???)
+#### Data Gathering
 - use Real dts
+- some sort of stability checking using the regularity of time intervals.
+#### Data Processing
+- Improve integral tracking(RK4???)
 - Use Gyro data to normalize Z
 - plot gyro vs baro altitude
-- some sort of stability checking using the regularity of time intervals.
+
   
