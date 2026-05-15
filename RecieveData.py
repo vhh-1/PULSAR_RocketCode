@@ -8,7 +8,7 @@ from matplotlib.animation import FuncAnimation
 UDP_IP = "0.0.0.0"
 UDP_PORT = 4210
 BATCH_SIZE = 10
-EXPECTED_SIZE = 240 # 10 samples * 6 floats (3 accel + 3 gyro) * 4 bytes
+EXPECTED_SIZE = 280 # 10 samples * 6 floats (3 accel + 3 gyro) * 4 bytes
 packet_format = "<" + "ffffff" * BATCH_SIZE 
 
 # --- DATA STORAGE ---
@@ -25,8 +25,8 @@ is_calibrating = False
 calib_buffer = []
 
 # Open File for logging (Gyro + Accel)
-log_file = open("rocket_sensor_log.csv", "w")
-log_file.write("timestamp,ax,ay,az,gx,gy,gz\n")
+log_file = open("rocket_sensor_log2.csv", "w")
+log_file.write("timestamp,ax,ay,az,gx,gy,gz,time\n")
 
 #init Wifi connection
 sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)

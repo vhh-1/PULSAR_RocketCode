@@ -6,7 +6,7 @@
 // --- Network Settings ---
 char ssid[] = "Hootspoot";      
 char pass[] = "Veenerschnitzel!";  
-IPAddress pcIP(10,102,154,172); // Replace with your computer's Static IP
+IPAddress pcIP(10,129,153,172); // Replace with your computer's Static IP
 unsigned int pcPort = 4210;      
 
 #define BATCH_SIZE 10
@@ -14,6 +14,7 @@ unsigned int pcPort = 4210;
 struct SensorData {
   float ax, ay, az; // Accelerometer
   float gx, gy, gz; // Gyroscope
+  float time;
   //Time here
   //Baro and temp dec here
 };
@@ -32,13 +33,14 @@ void loop() {
   if (IMU.accelerationAvailable() && IMU.gyroscopeAvailable()) {
     IMU.readAcceleration(buffer[bufferIndex].ax, buffer[bufferIndex].ay, buffer[bufferIndex].az);
     IMU.readGyroscope(buffer[bufferIndex].gx, buffer[bufferIndex].gy, buffer[bufferIndex].gz);
+    buffer[bufferIndex].time=millis();
     //Get the baro and temp here
     bufferIndex++;
 
     if (bufferIndex >= BATCH_SIZE) {
       //store data here
       Udp.beginPacket(pcIP, pcPort);
-      Udp.write((uint8_t*)buffer, sizeof(buffer)); // 240 bytes
+      Udp.write((uint8_t*)buffer, sizeof(buffer)); // 280 bytes
       Udp.endPacket();
       bufferIndex = 0;
     }
