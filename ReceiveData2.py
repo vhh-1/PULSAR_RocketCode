@@ -10,7 +10,7 @@ UDP_IP = "0.0.0.0"
 UDP_PORT = 4210
 BATCH_SIZE = 10
 EXPECTED_SIZE = 280  # 10 samples * 6 floats * 4 bytes
-packet_format = "<" + "ffffff" * BATCH_SIZE
+packet_format = "<" + "ffffffI" * BATCH_SIZE
 
 # --- DATA STORAGE ---
 MAX_POINTS = 400
@@ -34,7 +34,7 @@ accel_scale = 1.0  # Scalar modifier to match 1.0G target
 
 # Open File for logging (Gyro + Accel)
 log_file = open("rocket_sensor_log2.csv", "w")
-log_file.write("timestamp,ax,ay,az,gx,gy,gz,global_az,v_z,d_z\n")
+log_file.write("timestamp,ax,ay,az,gx,gy,gz,,time,global_az,v_z,d_z\n")
 
 # Init Wifi connection
 sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
